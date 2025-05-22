@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EC Electronic Coin Chain - Home</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to bottom, #b87333, #a0522d);
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .chain-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            overflow-x: auto;
+        }
+        .coin-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            perspective: 1000px;
+        }
+        .coin {
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #b87333, #a0522d);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s, box-shadow 0.3s;
+        }
+        .coin:hover {
+            transform: rotateY(20deg);
+            box-shadow: 0 0 30px rgba(184, 115, 51, 0.8);
+        }
+        .coin.active {
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.7);
+        }
+        .coin-text {
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        .swoosh {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M 10 90 Q 50 10 90 90" fill="none" stroke="%239b59b6" stroke-width="5"/></svg>');
+            background-size: cover;
+            opacity: 0.7;
+        }
+        .orbit {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            top: -10px;
+            left: -10px;
+            opacity: 0.5;
+        }
+        .chip {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: #333;
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .chip::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #666;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .connection-line {
+            position: absolute;
+            height: 4px;
+            background: #9b59b6;
+            opacity: 0.6;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: -1;
+        }
+        .info-section {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .info-section h2 {
+            color: #b87333;
+            border-bottom: 2px solid #9b59b6;
+            padding-bottom: 10px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .info-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        .info-card h3 {
+            margin-top: 0;
+            color: #9b59b6;
+        }
+        .tooltip {
+            position: absolute;
+            background: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .info-card:hover .tooltip {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>EC Electronic Coin Chain</h1>
+    </div>
+
+    <div class="chain-container" id="chainContainer">
+        <!-- सिक्के डायनामिक रूप से JavaScript के ज़रिए जोड़े जाएंगे -->
+    </div>
+
+    <div class="info-section">
+        <h2>Technical Overview</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Blockchain Frameworks</h3>
+                <p><strong>CATL:</strong> An open-source blockchain framework tailored for copper coins.</p>
+                <p><strong>Web3:</strong> A versatile framework with tools for copper coin integration.</p>
+                <div class="tooltip">CATL is optimized for copper; Web3 offers broader compatibility.</div>
+            </div>
+            <div class="info-card">
+                <h3>Databases</h3>
+                <p><strong>PostgreSQL:</strong> A robust system for secure data management.</p>
+                <p><strong>MySQL:</strong> Simple and ideal for small to medium projects.</p>
+                <div class="tooltip">PostgreSQL for scalability; MySQL for simplicity.</div>
+            </div>
+            <div class="info-card">
+                <h3>Web Development Tools</h3>
+                <p><strong>JavaScript:</strong> For interactive web interfaces.</p>
+                <p><strong>HTML & CSS:</strong> To structure and style the web page.</p>
+                <div class="tooltip">JavaScript drives interactivity; HTML/CSS shapes the design.</div>
+            </div>
+            <div class="info-card">
+                <h3>Cryptographic Algorithms</h3>
+                <p><strong>AES:</strong> Symmetric encryption for secure data storage.</p>
+                <p><strong>RSA:</strong> Asymmetric encryption for data signing.</p>
+                <div class="tooltip">AES ensures confidentiality; RSA verifies authenticity.</div>
+            </div>
+            <div class="info-card">
+                <h3>Security Protocols</h3>
+                <p><strong>HTTPS:</strong> Encrypts web communication.</p>
+                <p><strong>WS-Security:</strong> Secures web services.</p>
+                <div class="tooltip">HTTPS for secure browsing; WS-Security for API protection.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chainContainer = document.getElementById('chainContainer');
+        const numberOfCoins = 5;
+
+        for (let i = 0; i < numberOfCoins; i++) {
+            const coinContainer = document.createElement('div');
+            coinContainer.classList.add('coin-container');
+
+            coinContainer.innerHTML = `
+                <div class="orbit"></div>
+                <div class="swoosh"></div>
+                <div class="coin">
+                    <span class="coin-text">EC</span>
+                    <div class="chip"></div>
+                </div>
+            `;
+
+            chainContainer.appendChild(coinContainer);
+
+            if (i < numberOfCoins - 1) {
+                const line = document.createElement('div');
+                line.classList.add('connection-line');
+                line.style.width = '40px';
+                line.style.left = `${120 + i * 160}px`;
+                chainContainer.appendChild(line);
+            }
+        }
+
+        const coins = document.querySelectorAll('.coin');
+        coins.forEach(coin => {
+            coin.addEventListener('click', () => {
+                coin.classList.toggle('active');
+                alert(coin.classList.contains('active') ? 'Coin is functional!' : 'Coin is inactive.');
+            });
+        });
+
+        // Security Note: Ensure the web server uses HTTPS to encrypt communication.
+        // For APIs, implement WS-Security to protect data transmission.
+        // Use AES for encrypting coin data and RSA for signing transactions.
+    </script>
+</body>
+</html>
