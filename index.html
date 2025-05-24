@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECNShare - निवेश सिस्टम</title>
+    <title>ECShare - निवेश सिस्टम</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,8 +48,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>ECNShare - निवेश सिस्टम</h1>
-        <p>1000 रुपये निवेश करें!</p>
+        <h1>ECShare - निवेश सिस्टम</h1>
+        <p>100 रुपये निवेश करें!</p>
 
         <h3>ब्रोकर रजिस्टर करें</h3>
         <button onclick="registerBroker()">ब्रोकर बनें</button>
@@ -57,7 +57,7 @@
         <h3>निवेश करें</h3>
         <input type="text" id="referrer" placeholder="रेफरर का पता (वैकल्पिक)">
         <input type="text" id="broker" placeholder="ब्रोकर का पता (वैकल्पिक)">
-        <button onclick="invest()">1000 रुपये निवेश करें</button>
+        <button onclick="invest()">100 रुपये निवेश करें</button>
 
         <h3>अपना बैलेंस चेक करें</h3>
         <button onclick="checkBalance()">बैलेंस देखें</button>
@@ -270,7 +270,7 @@
             try {
                 await contract.methods.invest(referrer, broker).send({
                     from: accounts[0],
-                    value: web3.utils.toWei("0.01", "ether") // 1000 रुपये की वैल्यू (इथेरियम में)
+                    value: web3.utils.toWei("0.01", "ether") // 100 रुपये की वैल्यू (इथेरियम में)
                 });
                 document.getElementById("status").innerText = "निवेश सफल!";
             } catch (error) {
@@ -283,7 +283,7 @@
             await connectWallet();
             try {
                 const balance = await contract.methods.getBalance(accounts[0]).call();
-                document.getElementById("status").innerText = `आपका बैलेंस: ${web3.utils.fromWei(balance, "ether")} ECNS`;
+                document.getElementById("status").innerText = `आपका बैलेंस: ${web3.utils.fromWei(balance, "ether")} ECNEWS`;
             } catch (error) {
                 document.getElementById("status").innerText = "त्रुटि: " + error.message;
             }
